@@ -3,6 +3,42 @@
   <groupId>MakeMyMeeting</groupId>
   <artifactId>MakeMyMeeting</artifactId>
   <version>0.0.1-SNAPSHOT</version>
+  
+
+
+
+ <repositories>
+	<repository>
+		<id>central</id>
+		<name>Unicen REPO</name>
+		<url>http://repos.exa.unicen.edu.ar:8081/repository/maven-central/</url>
+	</repository>
+  </repositories>
+
+
+	<dependencies>
+  	<!--  <dependency>
+  		<groupId>org.apache.derby</groupId>
+  		<artifactId>derby</artifactId>
+  		<version>10.13.1.1</version>
+  	</dependency>
+  	-->
+  	<dependency>
+   <groupId>mysql</groupId>
+   <artifactId>mysql-connector-java
+    </artifactId>
+   <version>5.1.39</version>
+  </dependency>
+  	
+  	
+  	<dependency>
+    <groupId>org.hibernate</groupId>
+    <artifactId>hibernate-entitymanager</artifactId>
+    <version>5.2.10.Final</version>
+	</dependency>
+  </dependencies>
+
+
   <build>
     <sourceDirectory>src</sourceDirectory>
     <plugins>
