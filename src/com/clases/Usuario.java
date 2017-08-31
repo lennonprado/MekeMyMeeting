@@ -8,6 +8,7 @@ public class Usuario {
 	
 	List<Notificacion> notifiaciones;
 
+	//pusheable
 	List<Calendario> calendarios;
 
 	public void nuevaReunion(){
