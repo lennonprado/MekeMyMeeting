@@ -2,9 +2,9 @@ package com.clases;
 
 public class Notificacion {
 
-	Reunion reunion;
+	private Reunion reunion;
 	
-	Estado estado;
+	private Estado estado;
 	
 	enum Estado{
 		aceptda,rechazada,pendiente;

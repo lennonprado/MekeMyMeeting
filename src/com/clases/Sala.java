@@ -1,29 +1,29 @@
 package com.clases;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
-@Entity
+//@Entity
 public class Sala {
 	
-	@Id
-	@GeneratedValue
-	int idSala;
-	int cantPersonas;
-	String nombre;
-	String direccion;	
-	List<Reunion> reuniones;
+	//@Id
+	//@GeneratedValue
+	private int idSala;
+	private int cantPersonas;
+	private String nombre;
+	private String direccion;	
+	private List<Reunion> reuniones;
 		
-	public Sala() {
-	}
+	public Sala() { }
 	
 	public Sala(int cantPersonas, String nombre, String direccion) {
-		super();
 		this.cantPersonas = cantPersonas;
 		this.nombre = nombre;
 		this.direccion = direccion;
@@ -70,9 +70,17 @@ public class Sala {
 		
 	}
 	
-	public boolean ocupado(Date d){
+	public boolean ocupado(Reunion r){
+		if(reuniones.isEmpty()) return false;
+
+		for (Reunion reunion : reuniones) {
+			
+		}
+		
 		// for para recorrer reuniones y comprar que el date sera menor a la fecha o mayor a la fecha mas la duracion
-		return true;
+		return false;
 	}
+	
+
 	
 }
