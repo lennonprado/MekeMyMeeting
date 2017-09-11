@@ -1,13 +1,26 @@
 package com.clases;
 
+import javax.persistence.*;
+
+@Entity
 public class Notificacion {
 
+    @Id
+    @GeneratedValue
+    private int id;
+
+    @ManyToOne
+	private Usuario usuarioNotificado;
+
+    @ManyToOne
 	private Reunion reunion;
 	
 	private Estado estado;
 	
 	enum Estado{
-		aceptda,rechazada,pendiente;
+		ACEPTADA,
+        RECHAZADA,
+        PENDIENTE
 	}
 
 	public Notificacion() {
@@ -15,7 +28,7 @@ public class Notificacion {
 
 	public Notificacion(Reunion reunion) {
 		this.reunion = reunion;
-		this.estado = Estado.pendiente;
+		this.estado = Estado.PENDIENTE;
 	}
 
 	public Reunion getReunion() {
@@ -32,18 +45,20 @@ public class Notificacion {
 
 	public void setEstado(Estado estado) {
 		this.estado = estado;
-	}	
+	}
 	
 	public void aceptar(){
-		this.estado = Estado.aceptda;
+		this.estado = Estado.ACEPTADA;
+		// Agregamos la reunion al calendario
 	}
 	
 	public void cancelar(){
-		this.estado = Estado.rechazada;
+		this.estado = Estado.RECHAZADA;
+		// Borramos esta notificaon de la lista del usuario
 	}
 	
 	public void esperar(){
-		this.estado = Estado.pendiente;		
+		this.estado = Estado.PENDIENTE;
 	}
 	
 }

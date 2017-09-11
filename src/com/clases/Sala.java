@@ -27,7 +27,7 @@ public class Sala {
 		this.cantPersonas = cantPersonas;
 		this.nombre = nombre;
 		this.direccion = direccion;
-		this.reuniones = new ArrayList<Reunion>();
+		this.reuniones = new ArrayList<>();
 	}
 
 	public int getCantPersonas() {
