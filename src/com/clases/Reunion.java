@@ -13,31 +13,31 @@ public class Reunion {
     private Date fechaInicio;
     private Date fechaFin;
     private int duracion;
-    //private Sala lugar;
+    private boolean alerta;
 
-    // Calendarios en los cuales la reunion fue agregada
-    @ManyToMany
-    private List<Calendario> calendarios;
+    @ManyToOne
+    private Usuario duenio;
+    @ManyToOne (cascade = CascadeType.PERSIST)
+    private Sala lugar;
 
     @ManyToMany
     private List<Usuario> invitados;
 
-    // Notificaciones enviadas a los usuarios de esta reunion
-    @OneToMany
-    private List<Notificacion> reuniones;
+    @ManyToMany
+    private List<Calendario> calendarios;
 
     public Reunion() {
     }
 
-    public Reunion(Date fechaInicio, int duracion, Sala lugar, Usuario dueno) {
+    public Reunion(Date fechaInicio, int duracion, Sala lugar, Usuario duenio) {
         super();
         this.fechaInicio = fechaInicio;
         this.invitados = new ArrayList<>();
-        this.reuniones = new ArrayList<>();
-        this.calendarios = new ArrayList<>();
         this.duracion = duracion;
-//		this.lugar = lugar;
+		this.lugar = lugar;
         this.fechaFin = getFechaFin();
+        this.duenio = duenio;
+        this.alerta = false;
     }
 
     /**
@@ -73,14 +73,29 @@ public class Reunion {
         this.duracion = duracion;
     }
 
-//	public Sala getLugar() {
-//		return lugar;
-//	}
-//
-//	public void setLugar(Sala lugar) {
-//		this.lugar = lugar;
-//	}
-//
+    public Usuario getDuenio() {
+        return duenio;
+    }
+
+    public int getIdReunion() {
+        return idReunion;
+    }
+
+    public boolean getAlerta(){
+        return alerta;
+    }
+
+    public void setAlerta(boolean alerta) {
+        this.alerta = alerta;
+    }
+
+    public Sala getLugar() {
+		return lugar;
+	}
+
+	public void setLugar(Sala lugar) {
+		this.lugar = lugar;
+	}
 
     public List<Usuario> getInvitados() {
         return invitados;
@@ -88,9 +103,8 @@ public class Reunion {
 
     public void addInvitado(Usuario u) {
 	    // Comprobar que el usuario que envio las invitaciones no se invite a si mismo
-        this.invitados.add(u);
-        u.notificar(new Notificacion(this));
-
+        //this.invitados.add(u);
+        u.notificar(new Notificacion(this,u));
     }
 
     public void deleteInvitado(Usuario i) {

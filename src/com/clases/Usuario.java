@@ -2,7 +2,6 @@ package com.clases;
 
 import javax.persistence.*;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 @Entity
@@ -13,15 +12,11 @@ public class Usuario {
     private int id;
     private String nombre;
 
-    @OneToMany(mappedBy = "usuarioNotificado")
+    @OneToMany(mappedBy = "usuarioNotificado", cascade = CascadeType.PERSIST)
     private List<Notificacion> notificaciones;
 
-    @OneToMany(mappedBy = "usuario")
+    @OneToMany(mappedBy = "usuario", cascade = CascadeType.PERSIST)
     private List<Calendario> calendarios;
-
-    // Lista de reuniones en la cual el usuario fue invitado
-    @ManyToMany(mappedBy = "invitados")
-    private List<Reunion> invitaciones;
 
     public Usuario(String nombre) {
         this.nombre = nombre;
@@ -30,45 +25,37 @@ public class Usuario {
         crearCalendario(); // Se crea un calendario por default
     }
 
-    /**
-     * Agrega una reunion a un determinado calendario perteneciente al usuario
-     *
-     * @param fechaInicio Fecha inicial de la reunion
-     * @param duracion    Duracion de la reunion
-     * @param lugar       Lugar donde se realizara la reunion
-     * @param c           Calendario donde se agregara la reunion
-     */
-    public Reunion nuevaReunion(Date fechaInicio, int duracion, Sala lugar, Calendario c) {
-        Reunion r1 = new Reunion(fechaInicio, duracion, lugar, this);
-        if (calendarios.contains(c)) {
-            c.agregarReunion(r1);
+    public void agregarReunion(Reunion r, Calendario c) {
+        if(!estoyOcupado(r)) {
+            if (calendarios.contains(c)) {
+                c.agregarReunion(r);
+            }
         }
-        return r1;
     }
-
 
     public void notificar(Notificacion n) {
         notificaciones.add(n);
     }
 
-
-
     /**
      * Comparte un calendario con otros usuarios
      */
-    public void compartir() {
-
+    public void compartir(Usuario u, Calendario c ) {
+        u.agregarCalendario(c);
     }
 
+    public void agregarCalendario(Calendario c) {
+        this.calendarios.add(c);
+    }
 
     public void crearCalendario() {
-        calendarios.add(new Calendario());
+        Calendario c = new Calendario(this);
+        calendarios.add(c);
     }
 
     public String getNombre() {
         return nombre;
     }
-
 
     public void setNombre(String nombre) {
         this.nombre = nombre;
@@ -78,7 +65,6 @@ public class Usuario {
 	public List<Notificacion> getNotificaciones() {
 		return notificaciones;
 	}
-
 
     public List<Calendario> getCalendarios() {
         return calendarios;
@@ -91,4 +77,27 @@ public class Usuario {
     public int getId() {
         return id;
     }
+
+    public void aceptar(Notificacion n, Calendario c){
+        if(!estoyOcupado(n.getReunion())) {
+            c.agregarReunion(n.getReunion());
+            this.notificaciones.remove(n);
+        }
+    }
+
+    public void cancelar(Notificacion n){
+        this.notificaciones.remove(n);
+    }
+
+    public boolean estoyOcupado(Reunion r){
+         for (Calendario c : this.calendarios) {
+             for (Reunion reunion : c.getReuniones()) {
+                 if ((r.getFechaInicio().compareTo(reunion.getFechaInicio()) > 0) && (r.getFechaFin().compareTo(reunion.getFechaFin()) < 0)) {
+                     return true;
+                 }
+             }
+         }
+         return false;
+    }
+
 }

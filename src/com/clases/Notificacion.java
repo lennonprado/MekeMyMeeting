@@ -8,27 +8,28 @@ public class Notificacion {
     @Id
     @GeneratedValue
     private int id;
-
-    @ManyToOne
+	@ManyToOne
 	private Usuario usuarioNotificado;
-
-    @ManyToOne
-	private Reunion reunion;
-	
-	private Estado estado;
-	
-	enum Estado{
-		ACEPTADA,
-        RECHAZADA,
-        PENDIENTE
-	}
+	@ManyToOne
+    private Reunion reunion;
 
 	public Notificacion() {
 	}
 
-	public Notificacion(Reunion reunion) {
+	public Notificacion(Reunion reunion, Usuario usuario) {
 		this.reunion = reunion;
-		this.estado = Estado.PENDIENTE;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public Usuario getUsuarioNotificado() {
+		return usuarioNotificado;
+	}
+
+	public void setUsuarioNotificado(Usuario usuarioNotificado) {
+		this.usuarioNotificado = usuarioNotificado;
 	}
 
 	public Reunion getReunion() {
@@ -39,26 +40,5 @@ public class Notificacion {
 		this.reunion = reunion;
 	}
 
-	public Estado getEstado() {
-		return estado;
-	}
 
-	public void setEstado(Estado estado) {
-		this.estado = estado;
-	}
-	
-	public void aceptar(){
-		this.estado = Estado.ACEPTADA;
-		// Agregamos la reunion al calendario
-	}
-	
-	public void cancelar(){
-		this.estado = Estado.RECHAZADA;
-		// Borramos esta notificaon de la lista del usuario
-	}
-	
-	public void esperar(){
-		this.estado = Estado.PENDIENTE;
-	}
-	
 }

@@ -6,19 +6,18 @@ import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.List;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 
-//@Entity
+@Entity
 public class Sala {
 	
-	//@Id
-	//@GeneratedValue
+	@Id
+	@GeneratedValue
 	private int idSala;
 	private int cantPersonas;
 	private String nombre;
-	private String direccion;	
+	private String direccion;
+	@OneToMany (mappedBy="lugar",cascade = CascadeType.PERSIST)
 	private List<Reunion> reuniones;
 		
 	public Sala() { }
@@ -64,23 +63,16 @@ public class Sala {
 
 	public void addReunion(Reunion r) {
 		this.reuniones.add(r);
-	}	
-	
-	public void deleteReunion(Reunion r){
-		
 	}
 	
 	public boolean ocupado(Reunion r){
-		if(reuniones.isEmpty()) return false;
-
-		for (Reunion reunion : reuniones) {
-			
+		if(!reuniones.isEmpty()) {
+			for (Reunion reunion : reuniones) {
+				if((r.getFechaInicio().compareTo(reunion.getFechaInicio()) > 0) && ( r.getFechaFin().compareTo(reunion.getFechaFin()) < 0) )
+					return true;
+			}
 		}
-		
-		// for para recorrer reuniones y comprar que el date sera menor a la fecha o mayor a la fecha mas la duracion
 		return false;
 	}
-	
 
-	
 }

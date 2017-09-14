@@ -25,41 +25,38 @@ public class Main {
 		Usuario u5 = new Usuario("Mariano");
 		Usuario u6 = new Usuario("Marcos");
 
-
-		manager.persist(u1);
-        manager.persist(u2);
-        manager.persist(u3);
-        manager.persist(u4);
-        manager.persist(u5);
-        manager.persist(u6);
-
-
-
-
 		Sala sala1 = new Sala(5, "Sala 1", "Direccion 1");
-		Sala sala2 = new Sala(7, "Sala 2", "Direccion 2");
-		
-		
+//		Sala sala2 = new Sala(7, "Sala 2", "Direccion 2");
+
 		// 19 de noviembre de 2017 12:30pm
 		Date fechaR1 = new GregorianCalendar(2017, Calendar.NOVEMBER, 19, 12, 30).getTime();
 
 
-		Calendario c = u1.getCalendarios().get(0);
-        manager.persist(c);
-        Reunion r1 = u1.nuevaReunion(fechaR1, 2, sala1, c);
-        manager.persist(r1);
+        Reunion r1 = new Reunion(fechaR1, 2, sala1, u1);
+
 
         r1.addInvitado(u2);
         r1.addInvitado(u3);
         r1.addInvitado(u4);
 
-        Notificacion n1 = u2.getNotificaciones().get(0);
-        n1.aceptar();
+        Notificacion n = u2.getNotificaciones().get(0);
+        u2.aceptar(n,u2.getCalendarios().get(0));
 
-        //manager.persist(n1);
+		n = u3.getNotificaciones().get(0);
+		u3.aceptar(n,u3.getCalendarios().get(0));
 
-        manager.getTransaction( ).commit( );
+		n = u4.getNotificaciones().get(0);
+		u4.aceptar(n,u4.getCalendarios().get(0));
 
+
+		manager.persist(u1);
+		manager.persist(u2);
+		manager.persist(u3);
+		manager.persist(u4);
+		manager.persist(u5);
+		manager.persist(u6);
+
+		manager.getTransaction( ).commit( );
 		manager.close();
 		emf.close();
 
