@@ -1,8 +1,7 @@
 package com.clases;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 @Entity
 public class Calendario {
@@ -17,9 +16,12 @@ public class Calendario {
     @ManyToMany(mappedBy="calendarios",cascade = CascadeType.PERSIST)
 	private List<Reunion> reuniones;
 
+    public Calendario() {}
+
 	public Calendario(Usuario u) {
 	    this.usuario = u;
 		reuniones = new ArrayList<>();
+
 	}
 
     public Usuario getUsuario() {
@@ -32,7 +34,7 @@ public class Calendario {
 
     public void agregarReunion(Reunion r) {
 		this.reuniones.add(r);
-        System.out.println(r.toString());
+		r.agregarACalendario(this);
     }
 
     public int getId() {

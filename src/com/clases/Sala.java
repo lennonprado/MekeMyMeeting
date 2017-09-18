@@ -59,7 +59,7 @@ public class Sala {
 
 	public void setReuniones(List<Reunion> reuniones) {
 		this.reuniones = reuniones;
-	}	
+	}
 
 	public void addReunion(Reunion r) {
 		this.reuniones.add(r);
@@ -68,8 +68,7 @@ public class Sala {
 	public boolean ocupado(Reunion r){
 		if(!reuniones.isEmpty()) {
 			for (Reunion reunion : reuniones) {
-				if((r.getFechaInicio().compareTo(reunion.getFechaInicio()) > 0) && ( r.getFechaFin().compareTo(reunion.getFechaFin()) < 0) )
-					return true;
+				if(Reunion.seSuperponen(r, reunion)) return true;
 			}
 		}
 		return false;

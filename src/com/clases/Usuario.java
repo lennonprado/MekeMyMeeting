@@ -18,6 +18,8 @@ public class Usuario {
     @OneToMany(mappedBy = "usuario", cascade = CascadeType.PERSIST)
     private List<Calendario> calendarios;
 
+    public Usuario(){}
+
     public Usuario(String nombre) {
         this.nombre = nombre;
         notificaciones = new ArrayList<>();
@@ -35,6 +37,7 @@ public class Usuario {
 
     public void notificar(Notificacion n) {
         notificaciones.add(n);
+
     }
 
     /**
@@ -71,7 +74,8 @@ public class Usuario {
     }
 
     public boolean equals(Object obj) {
-        return ((Usuario) obj).getId() == id;
+        Usuario u = (Usuario) obj;
+        return u.id == id && u.nombre.equals(nombre);
     }
 
     public int getId() {
@@ -85,16 +89,22 @@ public class Usuario {
         }
     }
 
+    public void aceptar(Notificacion n){
+        aceptar(n, getDefaultCalendario());
+    }
+
     public void cancelar(Notificacion n){
         this.notificaciones.remove(n);
+    }
+
+    public Calendario getDefaultCalendario(){
+        return calendarios.get(0);
     }
 
     public boolean estoyOcupado(Reunion r){
          for (Calendario c : this.calendarios) {
              for (Reunion reunion : c.getReuniones()) {
-                 if ((r.getFechaInicio().compareTo(reunion.getFechaInicio()) > 0) && (r.getFechaFin().compareTo(reunion.getFechaFin()) < 0)) {
-                     return true;
-                 }
+                 if (Reunion.seSuperponen(r, reunion)) return true;
              }
          }
          return false;

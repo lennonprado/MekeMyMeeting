@@ -12,7 +12,6 @@ public class Reunion {
     private int idReunion;
     private Date fechaInicio;
     private Date fechaFin;
-    private int duracion;
     private boolean alerta;
 
     @ManyToOne
@@ -20,7 +19,7 @@ public class Reunion {
     @ManyToOne (cascade = CascadeType.PERSIST)
     private Sala lugar;
 
-    @ManyToMany
+    @OneToMany
     private List<Usuario> invitados;
 
     @ManyToMany
@@ -32,10 +31,10 @@ public class Reunion {
     public Reunion(Date fechaInicio, int duracion, Sala lugar, Usuario duenio) {
         super();
         this.fechaInicio = fechaInicio;
+        this.calendarios = new ArrayList<>();
         this.invitados = new ArrayList<>();
-        this.duracion = duracion;
-		this.lugar = lugar;
-        this.fechaFin = getFechaFin();
+		this.setLugar(lugar);
+        this.fechaFin = getFechaFin(duracion);
         this.duenio = duenio;
         this.alerta = false;
     }
@@ -45,12 +44,16 @@ public class Reunion {
      *
      * @return La fecha fin
      */
-    public Date getFechaFin() {
+    public Date getFechaFin(int duracion) {
         if (fechaFin != null) return fechaFin;
         Calendar cal = Calendar.getInstance();
         cal.setTime(fechaInicio);
         Date fin = new GregorianCalendar(cal.get(Calendar.YEAR), cal.get(Calendar.MONTH), cal.get(Calendar.DAY_OF_MONTH), cal.get(Calendar.HOUR_OF_DAY) + duracion, cal.get(Calendar.MINUTE)).getTime();
         return fin;
+    }
+
+    public Date getFechaFin() {
+        return fechaFin;
     }
 
     public Date getFechaInicio() {
@@ -63,14 +66,6 @@ public class Reunion {
 
     public void setFechaFin(Date fechaFin) {
         this.fechaFin = fechaFin;
-    }
-
-    public int getDuracion() {
-        return duracion;
-    }
-
-    public void setDuracion(int duracion) {
-        this.duracion = duracion;
     }
 
     public Usuario getDuenio() {
@@ -94,7 +89,7 @@ public class Reunion {
 	}
 
 	public void setLugar(Sala lugar) {
-		this.lugar = lugar;
+        if(!lugar.ocupado(this)) this.lugar = lugar;
 	}
 
     public List<Usuario> getInvitados() {
@@ -102,13 +97,24 @@ public class Reunion {
     }
 
     public void addInvitado(Usuario u) {
-	    // Comprobar que el usuario que envio las invitaciones no se invite a si mismo
-        //this.invitados.add(u);
-        u.notificar(new Notificacion(this,u));
+	   if(!u.equals(duenio)) {
+           u.notificar(new Notificacion(this, u));
+           invitados.add(u);
+       }
     }
 
-    public void deleteInvitado(Usuario i) {
+    public void agregarACalendario(Calendario c){
+        calendarios.add(c);
+    }
 
+    /**
+     * Comprueba si dos reuniones se superponen entre si
+     * @param r1 Reunion 1
+     * @param r2 Reunion 2
+     * @return Si se superponen
+     */
+    public static boolean seSuperponen(Reunion r1, Reunion r2){
+        return r1.getFechaInicio().compareTo(r2.getFechaInicio()) > 0 && r1.getFechaFin().compareTo(r2.getFechaFin()) < 0;
     }
 
 

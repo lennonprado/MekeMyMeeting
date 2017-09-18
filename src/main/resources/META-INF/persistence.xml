@@ -7,10 +7,10 @@
       <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
 
 
-     <class>Calendario</class>
-     <class>Reunion</class>
-     <class>Sala</class>
-     <class>Usuario</class>
+     <class>com.clases.Calendario</class>
+     <class>com.clases.Reunion</class>
+     <class>com.clases.Sala</class>
+     <class>com.clases.Usuario</class>
 
 
       <properties>

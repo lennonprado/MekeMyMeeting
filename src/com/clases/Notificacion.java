@@ -10,14 +10,14 @@ public class Notificacion {
     private int id;
 	@ManyToOne
 	private Usuario usuarioNotificado;
-	@ManyToOne
+	@ManyToOne (cascade = CascadeType.PERSIST)
     private Reunion reunion;
 
-	public Notificacion() {
-	}
+	public Notificacion() {}
 
 	public Notificacion(Reunion reunion, Usuario usuario) {
 		this.reunion = reunion;
+		this.usuarioNotificado = usuario;
 	}
 
 	public int getId() {
@@ -40,5 +40,7 @@ public class Notificacion {
 		this.reunion = reunion;
 	}
 
-
+	public boolean equals(Object obj) {
+		return ((Notificacion)obj).id == id;
+	}
 }
