@@ -18,6 +18,8 @@ public class Usuario {
     @OneToMany(mappedBy = "usuario", cascade = CascadeType.PERSIST)
     private List<Calendario> calendarios;
 
+
+
     public Usuario() {
     }
 

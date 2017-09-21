@@ -26,25 +26,39 @@ public class Main {
 		Usuario u6 = new Usuario("Marcos");
 
 		Sala sala1 = new Sala(5, "Sala 1", "Direccion 1");
-//		Sala sala2 = new Sala(7, "Sala 2", "Direccion 2");
+		Sala sala2 = new Sala(7, "Sala 2", "Direccion 2");
 
 		// 19 de noviembre de 2017 12:30pm
 		Date fechaR1 = new GregorianCalendar(2017, Calendar.NOVEMBER, 19, 12, 30).getTime();
 
+        // 20 de noviembre de 2017 19:30pm
+        Date fechaR2 = new GregorianCalendar(2017, Calendar.NOVEMBER, 20, 19, 30).getTime();
+
         Reunion r1 = new Reunion(fechaR1, 2, sala1, u1);
+        Reunion r2 = new Reunion(fechaR2, 2, sala2, u2);
 
         r1.addInvitado(u2);
         r1.addInvitado(u3);
         r1.addInvitado(u4);
 
+        // Aceptamos la notificacion de la primer reunion
         Notificacion n = u2.getNotificaciones().get(0);
         u2.aceptar(n);
 
-//		n = u3.getNotificaciones().get(0);
-//		u3.aceptar(n);
+		n = u3.getNotificaciones().get(0);
+		u3.aceptar(n);
 
-//		n = u4.getNotificaciones().get(0);
-//		u4.aceptar(n);
+		n = u4.getNotificaciones().get(0);
+		u4.aceptar(n);
+
+        r2.addInvitado(u3);
+  //      r2.addInvitado(u4);
+
+        // Aceptamos la notificacion de la segunda reunion
+//        n = u3.getNotificaciones().get(0);
+     //   u3.aceptar(n);
+        System.out.println(u3.getNotificaciones().size());
+
 
 		manager.persist(u1);
 		manager.persist(u2);

@@ -19,7 +19,7 @@ public class Reunion {
     @ManyToOne(cascade = CascadeType.PERSIST)
     private Sala lugar;
 
-    @OneToMany
+    @ManyToMany
     private List<Usuario> invitados;
 
     @ManyToMany
