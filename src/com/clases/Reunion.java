@@ -16,7 +16,7 @@ public class Reunion {
 
     @ManyToOne
     private Usuario duenio;
-    @ManyToOne (cascade = CascadeType.PERSIST)
+    @ManyToOne(cascade = CascadeType.PERSIST)
     private Sala lugar;
 
     @OneToMany
@@ -33,7 +33,7 @@ public class Reunion {
         this.fechaInicio = fechaInicio;
         this.calendarios = new ArrayList<>();
         this.invitados = new ArrayList<>();
-		this.setLugar(lugar);
+        this.setLugar(lugar);
         this.fechaFin = getFechaFin(duracion);
         this.duenio = duenio;
         this.alerta = false;
@@ -50,6 +50,16 @@ public class Reunion {
         cal.setTime(fechaInicio);
         Date fin = new GregorianCalendar(cal.get(Calendar.YEAR), cal.get(Calendar.MONTH), cal.get(Calendar.DAY_OF_MONTH), cal.get(Calendar.HOUR_OF_DAY) + duracion, cal.get(Calendar.MINUTE)).getTime();
         return fin;
+    }
+
+    public void recordarReunion() {
+        if (alerta) {
+            for (Usuario u : invitados) {
+                if (!u.fueNotificado(this)) {
+                    u.notificar(new Notificacion(this, u));
+                }
+            }
+        }
     }
 
     public Date getFechaFin() {
@@ -76,7 +86,7 @@ public class Reunion {
         return idReunion;
     }
 
-    public boolean getAlerta(){
+    public boolean getAlerta() {
         return alerta;
     }
 
@@ -85,37 +95,41 @@ public class Reunion {
     }
 
     public Sala getLugar() {
-		return lugar;
-	}
+        return lugar;
+    }
 
-	public void setLugar(Sala lugar) {
-        if(!lugar.ocupado(this)) this.lugar = lugar;
-	}
+    public void setLugar(Sala lugar) {
+        if (!lugar.ocupado(this)) this.lugar = lugar;
+    }
 
     public List<Usuario> getInvitados() {
         return invitados;
     }
 
     public void addInvitado(Usuario u) {
-	   if(!u.equals(duenio)) {
-           u.notificar(new Notificacion(this, u));
-           invitados.add(u);
-       }
+        if (!u.equals(duenio)) {
+            u.notificar(new Notificacion(this, u));
+            invitados.add(u);
+        }
     }
 
-    public void agregarACalendario(Calendario c){
+    public void agregarACalendario(Calendario c) {
         calendarios.add(c);
     }
 
     /**
      * Comprueba si dos reuniones se superponen entre si
+     *
      * @param r1 Reunion 1
      * @param r2 Reunion 2
      * @return Si se superponen
      */
-    public static boolean seSuperponen(Reunion r1, Reunion r2){
+    public static boolean seSuperponen(Reunion r1, Reunion r2) {
         return r1.getFechaInicio().compareTo(r2.getFechaInicio()) > 0 && r1.getFechaFin().compareTo(r2.getFechaFin()) < 0;
     }
 
-
+    public boolean equals(Object obj) {
+        Reunion r = (Reunion) obj;
+        return r.idReunion == idReunion && r.fechaInicio.equals(fechaInicio) && r.fechaFin.equals(fechaFin);
+    }
 }

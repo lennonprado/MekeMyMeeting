@@ -18,7 +18,8 @@ public class Usuario {
     @OneToMany(mappedBy = "usuario", cascade = CascadeType.PERSIST)
     private List<Calendario> calendarios;
 
-    public Usuario(){}
+    public Usuario() {
+    }
 
     public Usuario(String nombre) {
         this.nombre = nombre;
@@ -28,7 +29,7 @@ public class Usuario {
     }
 
     public void agregarReunion(Reunion r, Calendario c) {
-        if(!estoyOcupado(r)) {
+        if (!estoyOcupado(r)) {
             if (calendarios.contains(c)) {
                 c.agregarReunion(r);
             }
@@ -37,13 +38,19 @@ public class Usuario {
 
     public void notificar(Notificacion n) {
         notificaciones.add(n);
+    }
 
+    public boolean fueNotificado(Reunion r) {
+        for (Notificacion n : notificaciones) {
+            if(r.equals(n.getReunion())) return true;
+        }
+        return false;
     }
 
     /**
      * Comparte un calendario con otros usuarios
      */
-    public void compartir(Usuario u, Calendario c ) {
+    public void compartir(Usuario u, Calendario c) {
         u.agregarCalendario(c);
     }
 
@@ -65,9 +72,9 @@ public class Usuario {
     }
 
 
-	public List<Notificacion> getNotificaciones() {
-		return notificaciones;
-	}
+    public List<Notificacion> getNotificaciones() {
+        return notificaciones;
+    }
 
     public List<Calendario> getCalendarios() {
         return calendarios;
@@ -82,32 +89,32 @@ public class Usuario {
         return id;
     }
 
-    public void aceptar(Notificacion n, Calendario c){
-        if(!estoyOcupado(n.getReunion())) {
+    public void aceptar(Notificacion n, Calendario c) {
+        if (!estoyOcupado(n.getReunion())) {
             c.agregarReunion(n.getReunion());
             this.notificaciones.remove(n);
         }
     }
 
-    public void aceptar(Notificacion n){
+    public void aceptar(Notificacion n) {
         aceptar(n, getDefaultCalendario());
     }
 
-    public void cancelar(Notificacion n){
+    public void cancelar(Notificacion n) {
         this.notificaciones.remove(n);
     }
 
-    public Calendario getDefaultCalendario(){
+    public Calendario getDefaultCalendario() {
         return calendarios.get(0);
     }
 
-    public boolean estoyOcupado(Reunion r){
-         for (Calendario c : this.calendarios) {
-             for (Reunion reunion : c.getReuniones()) {
-                 if (Reunion.seSuperponen(r, reunion)) return true;
-             }
-         }
-         return false;
+    public boolean estoyOcupado(Reunion r) {
+        for (Calendario c : this.calendarios) {
+            for (Reunion reunion : c.getReuniones()) {
+                if (Reunion.seSuperponen(r, reunion)) return true;
+            }
+        }
+        return false;
     }
 
 }

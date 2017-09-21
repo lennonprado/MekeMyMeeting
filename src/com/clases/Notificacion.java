@@ -41,6 +41,7 @@ public class Notificacion {
 	}
 
 	public boolean equals(Object obj) {
-		return ((Notificacion)obj).id == id;
+	    Notificacion n = (Notificacion) obj;
+		return n.id == id && n.reunion.equals(reunion) && n.usuarioNotificado.equals(usuarioNotificado);
 	}
 }
