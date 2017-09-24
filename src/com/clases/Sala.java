@@ -18,16 +18,30 @@ public class Sala {
 	private String nombre;
 	private String direccion;
 	@OneToMany (mappedBy="lugar",cascade = CascadeType.PERSIST)
-	private List<Reunion> reuniones;
+	private List<Reunion> reuniones; // Reuniones que se realizaran en esta sala
 		
 	public Sala() { }
-	
-	public Sala(int cantPersonas, String nombre, String direccion) {
+
+    public Sala(int cantPersonas, String nombre, String direccion) {
 		this.cantPersonas = cantPersonas;
 		this.nombre = nombre;
 		this.direccion = direccion;
 		this.reuniones = new ArrayList<>();
 	}
+
+    /**
+     * Comprueba si la sala esta ocupada para una nueva reunion
+     * @param r Reunion a comprobar
+     * @return Si la reunion esta ocupada o no.
+     */
+    public boolean ocupado(Reunion r){
+        if(!reuniones.isEmpty()) {
+            for (Reunion reunion : reuniones) {
+                if(Reunion.seSuperponen(r, reunion)) return true;
+            }
+        }
+        return false;
+    }
 
 	public int getCantPersonas() {
 		return cantPersonas;
@@ -61,17 +75,14 @@ public class Sala {
 		this.reuniones = reuniones;
 	}
 
-	public void addReunion(Reunion r) {
-		this.reuniones.add(r);
-	}
-	
-	public boolean ocupado(Reunion r){
-		if(!reuniones.isEmpty()) {
-			for (Reunion reunion : reuniones) {
-				if(Reunion.seSuperponen(r, reunion)) return true;
-			}
-		}
-		return false;
-	}
+
+    public String toString() {
+        return "Sala{" +
+                "cantPersonas=" + cantPersonas +
+                ", nombre='" + nombre + '\'' +
+                ", direccion='" + direccion + '\'' +
+                '}';
+    }
+
 
 }

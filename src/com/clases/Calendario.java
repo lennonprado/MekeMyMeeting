@@ -14,15 +14,23 @@ public class Calendario {
     private Usuario usuario;
 
     @ManyToMany(mappedBy="calendarios",cascade = CascadeType.PERSIST)
-	private List<Reunion> reuniones;
+	private List<Reunion> reuniones; // Reuniones que existen en este calendario
 
     public Calendario() {}
 
 	public Calendario(Usuario u) {
 	    this.usuario = u;
 		reuniones = new ArrayList<>();
-
 	}
+
+    /**
+     * Agrega una reunion a el calendario
+     * @param r Reunion a agregar
+     */
+    public void agregarReunion(Reunion r) {
+        this.reuniones.add(r);
+        r.agregarACalendario(this);
+    }
 
     public Usuario getUsuario() {
         return usuario;
@@ -30,11 +38,6 @@ public class Calendario {
 
     public void setUsuario(Usuario usuario) {
         this.usuario = usuario;
-    }
-
-    public void agregarReunion(Reunion r) {
-		this.reuniones.add(r);
-		r.agregarACalendario(this);
     }
 
     public int getId() {

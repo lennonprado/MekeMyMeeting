@@ -40,6 +40,13 @@ public class Notificacion {
 		this.reunion = reunion;
 	}
 
+	public String toString() {
+		return "Notificacion{" +
+				"usuarioNotificado=" + usuarioNotificado +
+				", reunion=" + reunion +
+				'}';
+	}
+
 	public boolean equals(Object obj) {
 	    Notificacion n = (Notificacion) obj;
 		return n.id == id && n.reunion.equals(reunion) && n.usuarioNotificado.equals(usuarioNotificado);

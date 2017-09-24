@@ -5,16 +5,15 @@ import java.util.Date;
 import java.util.GregorianCalendar;
 
 import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
 
 import com.clases.*;
+import com.servicios.EMF;
+import com.servicios.Servicios;
 
 public class Main {
 
 	public static void main(String[] args) {
-		EntityManagerFactory emf = Persistence.createEntityManagerFactory("makemymeeting");
-		EntityManager manager = emf.createEntityManager();
+		EntityManager manager = EMF.getEntityManager();
 
         manager.getTransaction( ).begin( );
 
@@ -55,9 +54,8 @@ public class Main {
   //      r2.addInvitado(u4);
 
         // Aceptamos la notificacion de la segunda reunion
-//        n = u3.getNotificaciones().get(0);
-     //   u3.aceptar(n);
-        System.out.println(u3.getNotificaciones().size());
+        n = u3.getNotificaciones().get(0);
+        u3.aceptar(n);
 
 
 		manager.persist(u1);
@@ -68,9 +66,12 @@ public class Main {
 		manager.persist(u6);
 
 		manager.getTransaction( ).commit( );
-		manager.close();
-		emf.close();
 
+        System.out.println(Servicios.getUsuarios());
+
+
+
+		EMF.close();
 	}
 
 }

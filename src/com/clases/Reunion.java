@@ -4,29 +4,39 @@ import java.util.*;
 
 import javax.persistence.*;
 
+
+@NamedQueries({
+
+// Consulta todas las reuniones existentes.
+@NamedQuery(name=Reunion.BUSCAR_REUNIONES, query="SELECT r FROM Reunion r"),
+
+})
+
 @Entity
 public class Reunion {
+
+    public static final String BUSCAR_REUNIONES = "Reunion.buscarReuniones";
 
     @Id
     @GeneratedValue
     private int idReunion;
     private Date fechaInicio;
     private Date fechaFin;
-    private boolean alerta;
+    private boolean recordar; // Si la reunion fue marcada con recordatorios
 
     @ManyToOne
-    private Usuario duenio;
+    private Usuario duenio; // Usuario organizador de la reunion
+
     @ManyToOne(cascade = CascadeType.PERSIST)
-    private Sala lugar;
+    private Sala lugar;  // Lugar donde se realizara la reunion
 
     @ManyToMany
-    private List<Usuario> invitados;
+    private List<Usuario> invitados; // Usuarios invitados a la reunion
 
     @ManyToMany
-    private List<Calendario> calendarios;
+    private List<Calendario> calendarios; // Calendarios en los cuales esta la reunion
 
-    public Reunion() {
-    }
+    public Reunion() { }
 
     public Reunion(Date fechaInicio, int duracion, Sala lugar, Usuario duenio) {
         super();
@@ -36,7 +46,7 @@ public class Reunion {
         this.setLugar(lugar);
         this.fechaFin = getFechaFin(duracion);
         this.duenio = duenio;
-        this.alerta = false;
+        this.recordar = false;
     }
 
     /**
@@ -52,14 +62,47 @@ public class Reunion {
         return fin;
     }
 
+    /**
+     * Se les vuelve a enviar la notificacion a los usuarios invitados
+     * para recordarles de la reunion
+     */
     public void recordarReunion() {
-        if (alerta) {
+        if (recordar) {
             for (Usuario u : invitados) {
                 if (!u.fueNotificado(this)) {
                     u.notificar(new Notificacion(this, u));
                 }
             }
         }
+    }
+
+    /**
+     * Agrega un invitado a la reunion
+     * @param u Usuario a invitar
+     */
+    public void addInvitado(Usuario u) {
+        if (!u.equals(duenio)) {
+            u.notificar(new Notificacion(this, u));
+            invitados.add(u);
+        }
+    }
+
+    /**
+     * Agrega esta reunion a un calendario
+     * @param c Calendario a donde agregar la reunion
+     */
+    public void agregarACalendario(Calendario c) {
+        calendarios.add(c);
+    }
+
+    /**
+     * Comprueba si dos reuniones se superponen entre si
+     * @param r1 Reunion 1
+     * @param r2 Reunion 2
+     * @return Si se superponen
+     */
+    public static boolean seSuperponen(Reunion r1, Reunion r2) {
+        return r1.getFechaInicio().getTime() <= r2.getFechaFin().getTime() && r1.getFechaFin().getTime() >= r2.getFechaInicio().getTime();
     }
 
     public Date getFechaFin() {
@@ -86,12 +129,12 @@ public class Reunion {
         return idReunion;
     }
 
-    public boolean getAlerta() {
-        return alerta;
+    public boolean isRecordar() {
+        return recordar;
     }
 
-    public void setAlerta(boolean alerta) {
-        this.alerta = alerta;
+    public void setRecordar(boolean recordar) {
+        this.recordar = recordar;
     }
 
     public Sala getLugar() {
@@ -106,30 +149,23 @@ public class Reunion {
         return invitados;
     }
 
-    public void addInvitado(Usuario u) {
-        if (!u.equals(duenio)) {
-            u.notificar(new Notificacion(this, u));
-            invitados.add(u);
-        }
-    }
-
-    public void agregarACalendario(Calendario c) {
-        calendarios.add(c);
-    }
-
-    /**
-     * Comprueba si dos reuniones se superponen entre si
-     *
-     * @param r1 Reunion 1
-     * @param r2 Reunion 2
-     * @return Si se superponen
-     */
-    public static boolean seSuperponen(Reunion r1, Reunion r2) {
-        return r1.getFechaInicio().compareTo(r2.getFechaInicio()) > 0 && r1.getFechaFin().compareTo(r2.getFechaFin()) < 0;
-    }
-
     public boolean equals(Object obj) {
         Reunion r = (Reunion) obj;
         return r.idReunion == idReunion && r.fechaInicio.equals(fechaInicio) && r.fechaFin.equals(fechaFin);
+    }
+
+    public List<Calendario> getCalendarios() {
+        return calendarios;
+    }
+
+    public String toString() {
+        return "Reunion{" +
+                "fechaInicio=" + fechaInicio +
+                ", fechaFin=" + fechaFin +
+                ", recordar=" + recordar +
+                ", duenio=" + duenio +
+                ", lugar=" + lugar +
+                ", invitados=" + invitados +
+                '}';
     }
 }
