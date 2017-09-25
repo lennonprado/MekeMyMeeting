@@ -45,8 +45,10 @@ public class Reunion {
         this.invitados = new ArrayList<>();
         this.fechaFin = getFechaFin(duracion);
         this.setLugar(lugar);
+        // El duenio se auto-invita a la reunion al momento de crearla
         this.duenio = duenio;
         this.addInvitado(duenio);
+        this.duenio.aceptar(duenio.getNotificaciones().get(0));
         this.recordar = false;
     }
 

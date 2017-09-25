@@ -28,5 +28,6 @@ public class EMF {
         close();
         manager = null;
         emf = null;
+        getEntityManager();
     }
 }
