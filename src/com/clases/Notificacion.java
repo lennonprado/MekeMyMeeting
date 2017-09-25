@@ -44,7 +44,7 @@ public class Notificacion {
 		return "Notificacion{" +
 				"usuarioNotificado=" + usuarioNotificado +
 				", reunion=" + reunion +
-				'}';
+				'}' + System.getProperty("line.separator");
 	}
 
 	public boolean equals(Object obj) {

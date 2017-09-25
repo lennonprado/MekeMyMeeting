@@ -38,7 +38,7 @@ public class Servicios {
     }
 
     /**
-     * Dado un usuario y un día se obtienen todas sus reuniones
+     * Dado un usuario y un día se obtienen todas sus reuniones en su calendario
      *
      * @param u   Usuario a buscar las reuniones
      * @param dia Dia en el cual se realizara la reunion
@@ -81,5 +81,9 @@ public class Servicios {
         query.setParameter("fechaInicio", r.getFechaInicio());
         query.setParameter("fechaFin", r.getFechaFin());
         return query.getResultList();
+    }
+
+    public static void clearDatabase(){
+        EMF.clear();
     }
 }

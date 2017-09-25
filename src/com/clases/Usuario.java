@@ -7,15 +7,15 @@ import java.util.List;
 @NamedQueries({
 
 // Se obtienen todos los usuarios
-@NamedQuery(name=Usuario.BUSCAR_USUARIOS, query="SELECT u FROM Usuario u"),
+@NamedQuery(name = Usuario.BUSCAR_USUARIOS, query = "SELECT u FROM Usuario u"),
 // Consulta de todos los datos de un usuario.
-@NamedQuery(name=Usuario.BUSCAR_USUARIO, query="SELECT u FROM Usuario u WHERE u = :usuario"),
+@NamedQuery(name = Usuario.BUSCAR_USUARIO, query = "SELECT u FROM Usuario u WHERE u = :usuario"),
 // Dado un usuario y un día, retornar todas sus reuniones.
-@NamedQuery(name=Usuario.REUNIONES_USUARIO, query="SELECT r FROM Usuario u JOIN u.calendarios c JOIN c.reuniones r WHERE u = :usuario AND DAY(r.fechaInicio) = :dia"),
+@NamedQuery(name = Usuario.REUNIONES_USUARIO, query = "SELECT r FROM Usuario u JOIN u.calendarios c JOIN c.reuniones r WHERE u = :usuario AND DAY(r.fechaInicio) = :dia"),
 // Dado un usuario y un rango de fechas, retornar todas sus reuniones.
-@NamedQuery(name=Usuario.REUNIONES_USUARIO_RANGO, query="SELECT r FROM Usuario u JOIN u.calendarios c JOIN c.reuniones r WHERE u = :usuario AND r.fechaInicio BETWEEN :fechaInicio AND :fechaFin"),
+@NamedQuery(name = Usuario.REUNIONES_USUARIO_RANGO, query = "SELECT r FROM Usuario u JOIN u.calendarios c JOIN c.reuniones r WHERE u = :usuario AND r.fechaInicio BETWEEN :fechaInicio AND :fechaFin"),
 // Dado un usuario y una nueva reunión, retornar todas las reuniones que se superpongan con la nueva reunión.
-@NamedQuery(name=Usuario.REUNIONES_USUARIO_SUPERPONGAN, query="SELECT r FROM Usuario u JOIN u.calendarios c JOIN c.reuniones r WHERE u = :usuario AND :fechaInicio <= r.fechaFin AND :fechaFin >= r.fechaInicio")
+@NamedQuery(name = Usuario.REUNIONES_USUARIO_SUPERPONGAN, query = "SELECT r FROM Usuario u JOIN u.calendarios c JOIN c.reuniones r WHERE u = :usuario AND :fechaInicio <= r.fechaFin AND :fechaFin >= r.fechaInicio")
 
 })
 
@@ -40,7 +40,8 @@ public class Usuario {
     private List<Calendario> calendarios;
 
 
-    public Usuario() { }
+    public Usuario() {
+    }
 
     public Usuario(String nombre) {
         this.nombre = nombre;
@@ -52,6 +53,7 @@ public class Usuario {
     /**
      * Se agrega una reunion al un calendario especifico del usuario,
      * se comprueba que el usuario no tenga superposiciones de reuniones y que ese calendario pertenezca a el.
+     *
      * @param r Reunion a agregar
      * @param c Calendario donde agregar la reunion
      */
@@ -65,6 +67,7 @@ public class Usuario {
 
     /**
      * Se notifica al usuario acerca de una reunion
+     *
      * @param n La notificacion de la reunion
      */
     public void notificar(Notificacion n) {
@@ -73,18 +76,20 @@ public class Usuario {
 
     /**
      * Comprueba si este usuario ya fue notificado (le llego una notificacion pero todavia no la acepto/rechazo)
+     *
      * @param r Reunion a la comprobar que fue notificiado
      * @return Si fue notificado o no a la reunion
      */
     public boolean fueNotificado(Reunion r) {
         for (Notificacion n : notificaciones) {
-            if(r.equals(n.getReunion())) return true;
+            if (r.equals(n.getReunion())) return true;
         }
         return false;
     }
 
     /**
      * Comparte un calendario con otros usuarios
+     *
      * @param u Usuario a compartirle el calendario
      * @param c Calendario a compartir
      */
@@ -94,6 +99,7 @@ public class Usuario {
 
     /**
      * Se agrega un calendario a la lista de calendarios del usuario
+     *
      * @param c Calendario a agregar
      */
     public void agregarCalendario(Calendario c) {
@@ -110,6 +116,7 @@ public class Usuario {
 
     /**
      * Comprueba que el usuario no tenga superposicion de reuniones en sus calendarios
+     *
      * @param r Reunion a comprobar que este libre para el usuario
      * @return Si el usuario estara disponible para la reunion o no
      */
@@ -123,19 +130,21 @@ public class Usuario {
     }
 
     /**
-     * Acepta una notificacion recibida
+     * Acepta una notificacion recibida, si estaba ocupado, al aceptar se elimina la notificacion
+     *
      * @param n Notificacion a aceptar
      * @param c Calendario a agregar la reunion notificada
      */
     public void aceptar(Notificacion n, Calendario c) {
         if (!estoyOcupado(n.getReunion())) {
             c.agregarReunion(n.getReunion());
-            this.notificaciones.remove(n);
-        }
+        } else System.out.println(this + "No pudo aceptar");
+        this.notificaciones.remove(n);
     }
 
     /**
      * Acepta una notificacion recibida y se agrega al calendario por defecto del usuario
+     *
      * @param n Notificaion a aceptar
      */
     public void aceptar(Notificacion n) {
@@ -144,6 +153,7 @@ public class Usuario {
 
     /**
      * Rechaza una notifiacion recibida
+     *
      * @param n Notificacion a rechazar
      */
     public void cancelar(Notificacion n) {
@@ -182,6 +192,6 @@ public class Usuario {
     public String toString() {
         return "Usuario{" +
                 "nombre='" + nombre + '\'' +
-                '}';
+                '}' + System.getProperty("line.separator");
     }
 }

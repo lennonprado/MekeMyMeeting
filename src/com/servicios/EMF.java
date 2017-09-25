@@ -23,4 +23,10 @@ public class EMF {
             emf.close();
         }
     }
+
+    public static void clear(){
+        close();
+        manager = null;
+        emf = null;
+    }
 }

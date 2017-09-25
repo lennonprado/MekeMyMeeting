@@ -43,9 +43,10 @@ public class Reunion {
         this.fechaInicio = fechaInicio;
         this.calendarios = new ArrayList<>();
         this.invitados = new ArrayList<>();
-        this.setLugar(lugar);
         this.fechaFin = getFechaFin(duracion);
+        this.setLugar(lugar);
         this.duenio = duenio;
+        this.addInvitado(duenio);
         this.recordar = false;
     }
 
@@ -81,7 +82,7 @@ public class Reunion {
      * @param u Usuario a invitar
      */
     public void addInvitado(Usuario u) {
-        if (!u.equals(duenio)) {
+        if (lugar != null) {
             u.notificar(new Notificacion(this, u));
             invitados.add(u);
         }
@@ -142,7 +143,10 @@ public class Reunion {
     }
 
     public void setLugar(Sala lugar) {
-        if (!lugar.ocupado(this)) this.lugar = lugar;
+        if (!lugar.ocupado(this)) {
+            this.lugar = lugar;
+            lugar.addReunion(this);
+        }
     }
 
     public List<Usuario> getInvitados() {
@@ -166,6 +170,6 @@ public class Reunion {
                 ", duenio=" + duenio +
                 ", lugar=" + lugar +
                 ", invitados=" + invitados +
-                '}';
+                '}' + System.getProperty("line.separator");
     }
 }
