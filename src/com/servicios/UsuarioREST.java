@@ -1,6 +1,7 @@
 package com.servicios;
 
 import com.clases.Usuario;
+import org.jboss.jandex.Main;
 
 import javax.persistence.Query;
 import javax.ws.rs.GET;
@@ -29,6 +30,8 @@ public class UsuarioREST{
         @GET
         @Produces(MediaType.APPLICATION_JSON)
         public static List<Usuario> getUsuarios() {
+            com.app.Main.main();
+
             Query query = EMF.getEntityManager().createNamedQuery(Usuario.BUSCAR_USUARIOS);
 
             List<Usuario> aux;

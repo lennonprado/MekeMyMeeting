@@ -12,7 +12,7 @@ import com.servicios.ReunionREST;
 
 public class Main {
 
-    public static void main(String[] args) {
+    public static void main() {
         EntityManager manager = EMF.getEntityManager();
 
         manager.getTransaction().begin();
@@ -186,15 +186,15 @@ public class Main {
 
         manager.getTransaction().commit();
 
-        System.out.println(ReunionREST.getReuniones());
-        System.out.println("-----------------------");
-        System.out.println(ReunionREST.getReuniones(u1, 30));
-        System.out.println("-----------------------");
-        System.out.println(ReunionREST.getReuniones(u1, new GregorianCalendar(2017, Calendar.DECEMBER, 1).getTime(), new GregorianCalendar(2017, Calendar.DECEMBER, 31).getTime()));
+//        System.out.println(ReunionREST.getReuniones());
+//        System.out.println("-----------------------");
+//        System.out.println(ReunionREST.getReuniones(u1, 30));
+//        System.out.println("-----------------------");
+//        System.out.println(ReunionREST.getReuniones(u1, new GregorianCalendar(2017, Calendar.DECEMBER, 1).getTime(), new GregorianCalendar(2017, Calendar.DECEMBER, 31).getTime()));
 
         // ReunionREST.clearDatabase();
 
-        EMF.close();
+        //EMF.close();
     }
 
     public static void aceptarNotificacion(Usuario u) {
