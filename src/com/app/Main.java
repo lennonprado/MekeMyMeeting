@@ -8,7 +8,7 @@ import javax.persistence.EntityManager;
 
 import com.clases.*;
 import com.servicios.EMF;
-import com.servicios.Servicios;
+import com.servicios.ReunionREST;
 
 public class Main {
 
@@ -186,13 +186,13 @@ public class Main {
 
         manager.getTransaction().commit();
 
-        System.out.println(Servicios.getReuniones());
+        System.out.println(ReunionREST.getReuniones());
         System.out.println("-----------------------");
-        System.out.println(Servicios.getReuniones(u1, 30));
+        System.out.println(ReunionREST.getReuniones(u1, 30));
         System.out.println("-----------------------");
-        System.out.println(Servicios.getReuniones(u1, new GregorianCalendar(2017, Calendar.DECEMBER, 1).getTime(), new GregorianCalendar(2017, Calendar.DECEMBER, 31).getTime()));
+        System.out.println(ReunionREST.getReuniones(u1, new GregorianCalendar(2017, Calendar.DECEMBER, 1).getTime(), new GregorianCalendar(2017, Calendar.DECEMBER, 31).getTime()));
 
-        // Servicios.clearDatabase();
+        // ReunionREST.clearDatabase();
 
         EMF.close();
     }
