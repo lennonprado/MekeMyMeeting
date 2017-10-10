@@ -1,33 +1,31 @@
 package com.servicios;
 
+import com.app.DataCreation;
+
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import javax.servlet.ServletContextEvent;
+import javax.servlet.ServletContextListener;
+import javax.servlet.annotation.WebListener;
 
-public class EMF {
+@WebListener
+public class EMF implements ServletContextListener{
 
     private static EntityManager manager;
     private static EntityManagerFactory emf;
 
     public static EntityManager getEntityManager() {
-        if(manager == null){
-            emf = Persistence.createEntityManagerFactory("makemymeeting");
-            manager = emf.createEntityManager();
-        }
         return manager;
     }
 
-    public static void close(){
-        if(manager != null && emf != null){
-            manager.close();
-            emf.close();
-        }
+    public void contextInitialized(ServletContextEvent servletContextEvent) {
+        emf = Persistence.createEntityManagerFactory("makemymeeting");
+        manager = emf.createEntityManager();
+        DataCreation.Initialize();
     }
 
-    public static void clear(){
-        close();
-        manager = null;
-        emf = null;
-        getEntityManager();
+    public void contextDestroyed(ServletContextEvent servletContextEvent) {
+        emf.close();
     }
 }

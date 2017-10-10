@@ -8,11 +8,13 @@ import javax.persistence.EntityManager;
 
 import com.clases.*;
 import com.servicios.EMF;
-import com.servicios.ReunionREST;
 
-public class Main {
+public class DataCreation {
 
-    public static void main() {
+    /**
+     * Metodo encargado de instanciar datos iniciales en la base de datos al momento de ejecutar el servidor
+     */
+    public static void Initialize() {
         EntityManager manager = EMF.getEntityManager();
 
         manager.getTransaction().begin();
@@ -186,15 +188,6 @@ public class Main {
 
         manager.getTransaction().commit();
 
-//        System.out.println(ReunionREST.getReuniones());
-//        System.out.println("-----------------------");
-//        System.out.println(ReunionREST.getReuniones(u1, 30));
-//        System.out.println("-----------------------");
-//        System.out.println(ReunionREST.getReuniones(u1, new GregorianCalendar(2017, Calendar.DECEMBER, 1).getTime(), new GregorianCalendar(2017, Calendar.DECEMBER, 31).getTime()));
-
-        // ReunionREST.clearDatabase();
-
-        //EMF.close();
     }
 
     public static void aceptarNotificacion(Usuario u) {

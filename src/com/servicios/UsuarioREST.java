@@ -1,5 +1,6 @@
 package com.servicios;
 
+import com.app.DataCreation;
 import com.clases.Usuario;
 
 import javax.persistence.Query;
@@ -10,42 +11,39 @@ import javax.ws.rs.core.MediaType;
 import java.util.List;
 
 @Path("/usuarios")
-public class UsuarioREST{
+public class UsuarioREST {
 
     public UsuarioREST() {
     }
 
-    public static void crearUsuario(){
+    public static void crearUsuario() {
 
-        }
+    }
 
-        public static void updateUsuario(){
+    public static void updateUsuario() {
 
-        }
+    }
 
-        /**
-         * @return Se obtienen todos los usuarios existentes
-         */
-        @GET
-        @Produces(MediaType.APPLICATION_JSON)
-        public static List<Usuario> getUsuarios() {
-            com.app.Main.main();
+    /**
+     * @return Se obtienen todos los usuarios existentes
+     */
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    public static List<Usuario> getUsuarios() {
+        Query query = EMF.getEntityManager().createNamedQuery(Usuario.BUSCAR_USUARIOS);
+        return query.getResultList();
+    }
 
-            Query query = EMF.getEntityManager().createNamedQuery(Usuario.BUSCAR_USUARIOS);
-
-            return query.getResultList();
-        }
-
-        /**
-         * Se obtiene los datos de un usuario
-         *
-         * @param u Usuario a buscar
-         * @return Datos completos del usuario
-         */
-        public static Usuario getUsuario(Usuario u) {
-            Query query = EMF.getEntityManager().createNamedQuery(Usuario.BUSCAR_USUARIO);
-            query.setParameter("usuario", u);
-            return (Usuario) query.getSingleResult();
-        }
+    /**
+     * Se obtiene los datos de un usuario
+     *
+     * @param u Usuario a buscar
+     * @return Datos completos del usuario
+     */
+    public static Usuario getUsuario(Usuario u) {
+        Query query = EMF.getEntityManager().createNamedQuery(Usuario.BUSCAR_USUARIO);
+        query.setParameter("usuario", u);
+        return (Usuario) query.getSingleResult();
+    }
 
 }

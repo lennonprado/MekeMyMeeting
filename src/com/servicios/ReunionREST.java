@@ -63,7 +63,4 @@ public class ReunionREST {
         return query.getResultList();
     }
 
-    public static void clearDatabase(){
-        EMF.clear();
-    }
 }
