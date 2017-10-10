@@ -10,11 +10,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e83132e0-5d15-4185-a95b-741724f0ac65" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gitignore" afterPath="$PROJECT_DIR$/.gitignore" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/artifacts/MakeMyMeeting_war_exploded.xml" afterPath="$PROJECT_DIR$/.idea/artifacts/MakeMyMeeting_war_exploded.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MakeMyMeeting.iml" afterPath="$PROJECT_DIR$/MakeMyMeeting.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/artifacts/MakeMyMeeting_war_exploded/META-INF/MANIFEST.MF" afterPath="$PROJECT_DIR$/out/artifacts/MakeMyMeeting_war_exploded/META-INF/MANIFEST.MF" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/clases/Usuario.java" afterPath="$PROJECT_DIR$/src/com/clases/Usuario.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/servicios/UsuarioREST.java" afterPath="$PROJECT_DIR$/src/com/servicios/UsuarioREST.java" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -29,11 +27,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="Main.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Main.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/app/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="19">
-              <caret line="144" column="27" lean-forward="false" selection-start-line="144" selection-start-column="27" selection-end-line="144" selection-end-column="27" />
+            <state relative-caret-position="187">
+              <caret line="192" column="79" lean-forward="false" selection-start-line="192" selection-start-column="79" selection-end-line="192" selection-end-column="79" />
               <folding />
             </state>
           </provider>
@@ -42,9 +40,79 @@
       <file leaf-file-name="Usuario.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/clases/Usuario.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="779">
-              <caret line="45" column="5" lean-forward="false" selection-start-line="45" selection-start-column="5" selection-end-line="45" selection-end-column="5" />
+            <state relative-caret-position="38">
+              <caret line="23" column="76" lean-forward="false" selection-start-line="23" selection-start-column="76" selection-end-line="23" selection-end-column="76" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#3963#3964#0" expanded="true" />
+                <element signature="e#4002#4003#0" expanded="true" />
+                <element signature="e#5672#5673#0" expanded="true" />
+                <element signature="e#5713#5714#0" expanded="true" />
+                <element signature="e#5993#5994#0" expanded="true" />
+                <element signature="e#6027#6028#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Sala.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/clases/Sala.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="46">
+              <caret line="11" column="4" lean-forward="false" selection-start-line="11" selection-start-column="4" selection-end-line="11" selection-end-column="4" />
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Calendario.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/com/clases/Calendario.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="76">
+              <caret line="5" column="7" lean-forward="true" selection-start-line="5" selection-start-column="7" selection-end-line="5" selection-end-column="7" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Reunion.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/clases/Reunion.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="187">
+              <caret line="27" column="53" lean-forward="false" selection-start-line="27" selection-start-column="53" selection-end-line="27" selection-end-column="53" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Notificacion.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/clases/Notificacion.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="187">
+              <caret line="12" column="23" lean-forward="false" selection-start-line="12" selection-start-column="23" selection-end-line="12" selection-end-column="23" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ReunionREST.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/servicios/ReunionREST.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="76">
+              <caret line="8" column="13" lean-forward="false" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="UsuarioREST.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/servicios/UsuarioREST.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="551">
+              <caret line="29" column="8" lean-forward="true" selection-start-line="29" selection-start-column="8" selection-end-line="29" selection-end-column="45" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -65,6 +133,8 @@
       <find>calendarios</find>
       <find>equal</find>
       <find>acepta</find>
+      <find>calendario</find>
+      <find>default</find>
     </findStrings>
     <dirStrings>
       <dir>C:\Users\NeverDie\Documents\Java\MekeMyMeeting</dir>
@@ -92,15 +162,15 @@
         <option value="$PROJECT_DIR$/src/com/servicios/Servicios.java" />
         <option value="$PROJECT_DIR$/src/com/clases/Reunion.java" />
         <option value="$PROJECT_DIR$/src/com/servicios/EMF.java" />
-        <option value="$PROJECT_DIR$/src/com/clases/Calendario.java" />
         <option value="$PROJECT_DIR$/src/com/clases/Notificacion.java" />
         <option value="$PROJECT_DIR$/src/com/test/UsuarioTest.java" />
         <option value="$PROJECT_DIR$/src/com/servicios/ReunionREST.java" />
         <option value="$PROJECT_DIR$/web/WEB-INF/web.xml" />
-        <option value="$PROJECT_DIR$/src/com/servicios/UsuarioREST.java" />
         <option value="$PROJECT_DIR$/src/com/app/Main.java" />
-        <option value="$PROJECT_DIR$/src/com/clases/Usuario.java" />
         <option value="$PROJECT_DIR$/pom.xml" />
+        <option value="$PROJECT_DIR$/src/com/servicios/UsuarioREST.java" />
+        <option value="$PROJECT_DIR$/src/com/clases/Usuario.java" />
+        <option value="$PROJECT_DIR$/src/com/clases/Calendario.java" />
       </list>
     </option>
   </component>
@@ -150,7 +220,42 @@
             </path>
             <path>
               <item name="MakeMyMeeting" type="b2602c69:ProjectViewProjectNode" />
-              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
+              <item name="MekeMyMeeting" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="MakeMyMeeting" type="b2602c69:ProjectViewProjectNode" />
+              <item name="MekeMyMeeting" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="com" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="MakeMyMeeting" type="b2602c69:ProjectViewProjectNode" />
+              <item name="MekeMyMeeting" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="com" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="MakeMyMeeting" type="b2602c69:ProjectViewProjectNode" />
+              <item name="MekeMyMeeting" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="com" type="462c0819:PsiDirectoryNode" />
+              <item name="clases" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="MakeMyMeeting" type="b2602c69:ProjectViewProjectNode" />
+              <item name="MekeMyMeeting" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="com" type="462c0819:PsiDirectoryNode" />
+              <item name="servicios" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="MakeMyMeeting" type="b2602c69:ProjectViewProjectNode" />
+              <item name="MekeMyMeeting" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="com" type="462c0819:PsiDirectoryNode" />
+              <item name="test" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -407,7 +512,7 @@
       <workItem from="1507576214642" duration="1806000" />
       <workItem from="1507581178025" duration="3007000" />
       <workItem from="1507594244405" duration="3919000" />
-      <workItem from="1507598795318" duration="172000" />
+      <workItem from="1507598795318" duration="1618000" />
     </task>
     <task id="LOCAL-00001" summary="Corregido errores de calendarios sin reuniones en la DB y que los usuarios no se agregaban a la lista de invitados.">
       <created>1505693172523</created>
@@ -466,7 +571,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="51525000" />
+    <option name="totallyTimeSpent" value="52971000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
@@ -540,6 +645,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="85">
           <caret line="11" column="13" lean-forward="false" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -554,6 +660,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="13" lean-forward="false" selection-start-line="0" selection-start-column="13" selection-end-line="0" selection-end-column="13" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -561,6 +668,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1836">
           <caret line="108" column="16" lean-forward="false" selection-start-line="108" selection-start-column="16" selection-end-line="108" selection-end-column="16" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -576,6 +684,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="153">
           <caret line="9" column="0" lean-forward="false" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -591,6 +700,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="51">
           <caret line="9" column="0" lean-forward="false" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -606,7 +716,15 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="85">
           <caret line="7" column="13" lean-forward="false" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
-          <folding />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#3963#3964#0" expanded="true" />
+            <element signature="e#4002#4003#0" expanded="true" />
+            <element signature="e#5672#5673#0" expanded="true" />
+            <element signature="e#5713#5714#0" expanded="true" />
+            <element signature="e#5993#5994#0" expanded="true" />
+            <element signature="e#6027#6028#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -631,7 +749,15 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="119">
           <caret line="7" column="13" lean-forward="false" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
-          <folding />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#3963#3964#0" expanded="true" />
+            <element signature="e#4002#4003#0" expanded="true" />
+            <element signature="e#5672#5673#0" expanded="true" />
+            <element signature="e#5713#5714#0" expanded="true" />
+            <element signature="e#5993#5994#0" expanded="true" />
+            <element signature="e#6027#6028#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -718,37 +844,8 @@
     <entry file="file://$PROJECT_DIR$/src/com/tests/UsuarioTest.java" />
     <entry file="file://$PROJECT_DIR$/src/com/tests/ReunionTest.java" />
     <entry file="uml://JAVA/com.clases" />
-    <entry file="file://$PROJECT_DIR$/src/com/clases/Calendario.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="6" column="17" lean-forward="false" selection-start-line="6" selection-start-column="17" selection-end-line="6" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/test/UsuarioTest.java" />
-    <entry file="file://$PROJECT_DIR$/src/com/clases/Notificacion.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="165">
-          <caret line="11" column="0" lean-forward="false" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/servicios/ReunionREST.java" />
     <entry file="file://$PROJECT_DIR$/web/WEB-INF/web.xml" />
-    <entry file="file://$PROJECT_DIR$/src/com/clases/Sala.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="11" column="4" lean-forward="false" selection-start-line="11" selection-start-column="4" selection-end-line="11" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/clases/Reunion.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="19">
-          <caret line="47" column="20" lean-forward="false" selection-start-line="47" selection-start-column="20" selection-end-line="47" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/META-INF/persistence.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="190">
@@ -761,21 +858,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="435">
           <caret line="31" column="5" lean-forward="false" selection-start-line="31" selection-start-column="5" selection-end-line="31" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/servicios/UsuarioREST.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="207">
-          <caret line="29" column="8" lean-forward="false" selection-start-line="29" selection-start-column="8" selection-end-line="43" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/clases/Usuario.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="779">
-          <caret line="45" column="5" lean-forward="false" selection-start-line="45" selection-start-column="5" selection-end-line="45" selection-end-column="5" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -802,10 +884,76 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/servicios/ReunionREST.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="76">
+          <caret line="8" column="13" lean-forward="false" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/app/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="19">
-          <caret line="144" column="27" lean-forward="false" selection-start-line="144" selection-start-column="27" selection-end-line="144" selection-end-column="27" />
+        <state relative-caret-position="187">
+          <caret line="192" column="79" lean-forward="false" selection-start-line="192" selection-start-column="79" selection-end-line="192" selection-end-column="79" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/clases/Notificacion.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="12" column="23" lean-forward="false" selection-start-line="12" selection-start-column="23" selection-end-line="12" selection-end-column="23" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/clases/Reunion.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="27" column="53" lean-forward="false" selection-start-line="27" selection-start-column="53" selection-end-line="27" selection-end-column="53" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/clases/Sala.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="46">
+          <caret line="11" column="4" lean-forward="false" selection-start-line="11" selection-start-column="4" selection-end-line="11" selection-end-column="4" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/clases/Usuario.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="38">
+          <caret line="23" column="76" lean-forward="false" selection-start-line="23" selection-start-column="76" selection-end-line="23" selection-end-column="76" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#3963#3964#0" expanded="true" />
+            <element signature="e#4002#4003#0" expanded="true" />
+            <element signature="e#5672#5673#0" expanded="true" />
+            <element signature="e#5713#5714#0" expanded="true" />
+            <element signature="e#5993#5994#0" expanded="true" />
+            <element signature="e#6027#6028#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/servicios/UsuarioREST.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="551">
+          <caret line="29" column="8" lean-forward="true" selection-start-line="29" selection-start-column="8" selection-end-line="29" selection-end-column="45" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/clases/Calendario.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="76">
+          <caret line="5" column="7" lean-forward="true" selection-start-line="5" selection-start-column="7" selection-end-line="5" selection-end-column="7" />
           <folding />
         </state>
       </provider>

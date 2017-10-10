@@ -1,6 +1,7 @@
 package com.clases;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -20,7 +21,7 @@ import java.util.List;
 @NamedQuery(name = Usuario.REUNIONES_USUARIO_SUPERPONGAN, query = "SELECT r FROM Usuario u JOIN u.calendarios c JOIN c.reuniones r WHERE u = :usuario AND :fechaInicio <= r.fechaFin AND :fechaFin >= r.fechaInicio")
 
 })
-@JsonIgnoreProperties({ "notificaciones","calendarios" })
+@JsonIgnoreProperties({ "notificaciones", "calendarios", "defaultCalendario" })
 @Entity
 public class Usuario {
 
