@@ -28,4 +28,16 @@ public class EMF implements ServletContextListener{
     public void contextDestroyed(ServletContextEvent servletContextEvent) {
         emf.close();
     }
+
+    public static boolean persist(Object o){
+        try {
+            manager.getTransaction().begin();
+            manager.persist(o);
+            manager.getTransaction().commit();
+        }
+        catch (Exception e){
+            return false;
+        }
+        return true;
+    }
 }

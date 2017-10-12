@@ -32,9 +32,10 @@ public class Usuario {
     public static final String REUNIONES_USUARIO_SUPERPONGAN = "Usuario.reunionesSuperpongan";
 
     @Id
-    @GeneratedValue
-    private int id;
+    private String nombreUsuario;
+
     private String nombre;
+    private String apellido;
 
     @OneToMany(mappedBy = "usuarioNotificado", cascade = CascadeType.PERSIST)
     private List<Notificacion> notificaciones;
@@ -44,6 +45,9 @@ public class Usuario {
 
 
     public Usuario() {
+        notificaciones = new ArrayList<>();
+        calendarios = new ArrayList<>();
+        crearCalendario(); // Se crea un calendario por default
     }
 
     public Usuario(String nombre) {
@@ -185,12 +189,9 @@ public class Usuario {
 
     public boolean equals(Object obj) {
         Usuario u = (Usuario) obj;
-        return u.id == id && u.nombre.equals(nombre);
+        return  u.nombre.equals(nombre);
     }
 
-    public int getId() {
-        return id;
-    }
 
     public String toString() {
         return "Usuario{" +
