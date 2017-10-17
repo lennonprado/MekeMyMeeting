@@ -21,7 +21,7 @@ import java.util.List;
 @NamedQuery(name = Usuario.REUNIONES_USUARIO_SUPERPONGAN, query = "SELECT r FROM Usuario u JOIN u.calendarios c JOIN c.reuniones r WHERE u = :usuario AND :fechaInicio <= r.fechaFin AND :fechaFin >= r.fechaInicio")
 
 })
-@JsonIgnoreProperties({ "notificaciones", "calendarios", "defaultCalendario" })
+@JsonIgnoreProperties({ "notificaciones", "calendarios", "defaultCalendario", "password" })
 @Entity
 public class Usuario {
 
@@ -43,6 +43,7 @@ public class Usuario {
     @OneToMany(mappedBy = "usuario", cascade = CascadeType.PERSIST)
     private List<Calendario> calendarios;
 
+    private String password;
 
     public Usuario() {
         notificaciones = new ArrayList<>();
@@ -51,10 +52,19 @@ public class Usuario {
     }
 
     public Usuario(String nombre) {
-        this.nombre = nombre;
+        this.nombreUsuario = nombre;
         notificaciones = new ArrayList<>();
         calendarios = new ArrayList<>();
         crearCalendario(); // Se crea un calendario por default
+        password = "";
+    }
+
+    public String getNombreUsuario() {
+        return nombreUsuario;
+    }
+
+    public String getApellido() {
+        return apellido;
     }
 
     /**
@@ -189,13 +199,24 @@ public class Usuario {
 
     public boolean equals(Object obj) {
         Usuario u = (Usuario) obj;
-        return  u.nombre.equals(nombre);
+        return  u.nombreUsuario.equals(nombreUsuario) && u.password.equals(password);
     }
 
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public void setNombreUsuario(String nombreUsuario) {
+        this.nombreUsuario = nombreUsuario;
+    }
 
     public String toString() {
         return "Usuario{" +
-                "nombre='" + nombre + '\'' +
+                "nombre='" + nombreUsuario + '\'' +
                 '}' + System.getProperty("line.separator");
     }
 }

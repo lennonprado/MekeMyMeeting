@@ -1,5 +1,6 @@
 package com.servicios;
 
+import com.autenticacion.Secured;
 import com.clases.Usuario;
 
 import javax.persistence.Query;
@@ -34,6 +35,7 @@ public class UsuarioREST {
      * @return Se obtienen todos los usuarios existentes
      */
     @GET
+    @Secured
     @Produces(MediaType.APPLICATION_JSON)
     public List<Usuario> getUsuarios() {
         Query query = EMF.getEntityManager().createNamedQuery(Usuario.BUSCAR_USUARIOS);
