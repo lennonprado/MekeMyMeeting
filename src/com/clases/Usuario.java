@@ -12,11 +12,11 @@ import java.util.List;
 // Se obtienen todos los usuarios
 @NamedQuery(name = Usuario.BUSCAR_USUARIOS, query = "SELECT u FROM Usuario u"),
 // Consulta de todos los datos de un usuario.
-@NamedQuery(name = Usuario.BUSCAR_USUARIO, query = "SELECT u FROM Usuario u WHERE u = :usuario"),
+@NamedQuery(name = Usuario.BUSCAR_USUARIO, query = "SELECT u FROM Usuario u WHERE u.nombreUsuario = :usuario"),
 // Dado un usuario y un día, retornar todas sus reuniones.
-@NamedQuery(name = Usuario.REUNIONES_USUARIO, query = "SELECT r FROM Usuario u JOIN u.calendarios c JOIN c.reuniones r WHERE u = :usuario AND DAY(r.fechaInicio) = :dia"),
+@NamedQuery(name = Usuario.REUNIONES_USUARIO, query = "SELECT r FROM Usuario u JOIN u.calendarios c JOIN c.reuniones r WHERE u.nombreUsuario = :usuario AND DAY(r.fechaInicio) = :dia"),
 // Dado un usuario y un rango de fechas, retornar todas sus reuniones.
-@NamedQuery(name = Usuario.REUNIONES_USUARIO_RANGO, query = "SELECT r FROM Usuario u JOIN u.calendarios c JOIN c.reuniones r WHERE u = :usuario AND r.fechaInicio BETWEEN :fechaInicio AND :fechaFin"),
+@NamedQuery(name = Usuario.REUNIONES_USUARIO_RANGO, query = "SELECT r FROM Usuario u JOIN u.calendarios c JOIN c.reuniones r WHERE u.nombreUsuario = :usuario AND r.fechaInicio BETWEEN :fechaInicio AND :fechaFin"),
 // Dado un usuario y una nueva reunión, retornar todas las reuniones que se superpongan con la nueva reunión.
 @NamedQuery(name = Usuario.REUNIONES_USUARIO_SUPERPONGAN, query = "SELECT r FROM Usuario u JOIN u.calendarios c JOIN c.reuniones r WHERE u = :usuario AND :fechaInicio <= r.fechaFin AND :fechaFin >= r.fechaInicio")
 
@@ -218,5 +218,9 @@ public class Usuario {
         return "Usuario{" +
                 "nombre='" + nombreUsuario + '\'' +
                 '}' + System.getProperty("line.separator");
+    }
+
+    public void setApellido(String apellido) {
+        this.apellido = apellido;
     }
 }

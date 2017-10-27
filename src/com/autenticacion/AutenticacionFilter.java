@@ -1,4 +1,4 @@
-package com.servicios;
+package com.autenticacion;
 
 import com.autenticacion.Secured;
 import com.autenticacion.TokenHelper;
@@ -22,6 +22,7 @@ public class AutenticacionFilter implements ContainerRequestFilter {
         if (authHeader == null) throw new NotAuthorizedException("Bearer");
 
         String token = parseToken(authHeader);
+        System.out.println("test");
 
         if (!TokenHelper.tokenValido(token)) {
             throw new NotAuthorizedException("Bearer error=\"invalid_token\"");

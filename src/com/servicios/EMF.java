@@ -31,9 +31,9 @@ public class EMF implements ServletContextListener{
 
     public static boolean persist(Object o){
         try {
-//            manager.getTransaction().begin();
-//            manager.persist(o);
-//            manager.getTransaction().commit();
+            manager.getTransaction().begin();
+            manager.persist(o);
+            manager.getTransaction().commit();
         }
         catch (Exception e){
             return false;

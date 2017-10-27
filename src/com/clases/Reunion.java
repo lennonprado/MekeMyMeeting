@@ -1,5 +1,7 @@
 package com.clases;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import java.util.*;
 
 import javax.persistence.*;
@@ -11,7 +13,7 @@ import javax.persistence.*;
 @NamedQuery(name=Reunion.BUSCAR_REUNIONES, query="SELECT r FROM Reunion r"),
 
 })
-
+@JsonIgnoreProperties({ "invitados", "calendarios" })
 @Entity
 public class Reunion {
 

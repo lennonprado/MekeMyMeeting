@@ -1,5 +1,7 @@
 package com.clases;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -9,6 +11,7 @@ import java.util.List;
 import javax.persistence.*;
 
 @Entity
+@JsonIgnoreProperties({ "reuniones" })
 public class Sala {
 
     @Id
