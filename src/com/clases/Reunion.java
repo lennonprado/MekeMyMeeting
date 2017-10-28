@@ -2,6 +2,8 @@ package com.clases;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.*;
 
 import javax.persistence.*;
@@ -10,10 +12,10 @@ import javax.persistence.*;
 @NamedQueries({
 
 // Consulta todas las reuniones existentes.
-@NamedQuery(name=Reunion.BUSCAR_REUNIONES, query="SELECT r FROM Reunion r"),
+ @NamedQuery(name = Reunion.BUSCAR_REUNIONES, query = "SELECT r FROM Reunion r"),
 
 })
-@JsonIgnoreProperties({ "invitados", "calendarios" })
+@JsonIgnoreProperties({"invitados", "calendarios"})
 @Entity
 public class Reunion {
 
@@ -38,7 +40,8 @@ public class Reunion {
     @ManyToMany
     private List<Calendario> calendarios; // Calendarios en los cuales esta la reunion
 
-    public Reunion() { }
+    public Reunion() {
+    }
 
     public Reunion(Date fechaInicio, int duracion, Sala lugar, Usuario duenio) {
         super();
@@ -83,6 +86,7 @@ public class Reunion {
 
     /**
      * Agrega un invitado a la reunion
+     *
      * @param u Usuario a invitar
      */
     public void addInvitado(Usuario u) {
@@ -94,6 +98,7 @@ public class Reunion {
 
     /**
      * Agrega esta reunion a un calendario
+     *
      * @param c Calendario a donde agregar la reunion
      */
     public void agregarACalendario(Calendario c) {
@@ -102,6 +107,7 @@ public class Reunion {
 
     /**
      * Comprueba si dos reuniones se superponen entre si
+     *
      * @param r1 Reunion 1
      * @param r2 Reunion 2
      * @return Si se superponen

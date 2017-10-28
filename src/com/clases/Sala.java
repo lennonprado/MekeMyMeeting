@@ -9,10 +9,18 @@ import java.util.GregorianCalendar;
 import java.util.List;
 
 import javax.persistence.*;
+@NamedQueries({
 
+@NamedQuery(name = Sala.BUSCAR_SALAS, query = "SELECT s FROM Sala s"),
+@NamedQuery(name = Sala.BUSCAR_SALA, query = "SELECT s FROM Sala s WHERE s.idSala = :id"),
+
+})
 @Entity
 @JsonIgnoreProperties({ "reuniones" })
 public class Sala {
+
+    public static final String BUSCAR_SALAS = "Sala.buscarSalas";
+    public static final String BUSCAR_SALA = "Sala.buscar";
 
     @Id
     @GeneratedValue
@@ -90,5 +98,9 @@ public class Sala {
 
     public void addReunion(Reunion r) {
         reuniones.add(r);
+    }
+
+    public int getIdSala() {
+        return idSala;
     }
 }

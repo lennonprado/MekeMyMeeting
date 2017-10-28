@@ -1,7 +1,6 @@
 package com.clases;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonProperty;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -18,7 +17,7 @@ import java.util.List;
 // Dado un usuario y un rango de fechas, retornar todas sus reuniones.
 @NamedQuery(name = Usuario.REUNIONES_USUARIO_RANGO, query = "SELECT r FROM Usuario u JOIN u.calendarios c JOIN c.reuniones r WHERE u.nombreUsuario = :usuario AND r.fechaInicio BETWEEN :fechaInicio AND :fechaFin"),
 // Dado un usuario y una nueva reunión, retornar todas las reuniones que se superpongan con la nueva reunión.
-@NamedQuery(name = Usuario.REUNIONES_USUARIO_SUPERPONGAN, query = "SELECT r FROM Usuario u JOIN u.calendarios c JOIN c.reuniones r WHERE u = :usuario AND :fechaInicio <= r.fechaFin AND :fechaFin >= r.fechaInicio")
+@NamedQuery(name = Usuario.REUNIONES_USUARIO_SUPERPONGAN, query = "SELECT r FROM Usuario u JOIN u.calendarios c JOIN c.reuniones r WHERE u.nombreUsuario = :usuario AND :fechaInicio <= r.fechaFin AND :fechaFin >= r.fechaInicio")
 
 })
 @JsonIgnoreProperties({ "notificaciones", "calendarios", "defaultCalendario", "password" })

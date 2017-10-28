@@ -45,6 +45,7 @@ public class UsuarioREST {
     }
 
     @PUT
+    @Secured
     @Path("/{id}")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
@@ -84,17 +85,27 @@ public class UsuarioREST {
         return (Usuario)query.getSingleResult();
     }
 
-    public class RecursoDuplicado extends WebApplicationException {
-        public RecursoDuplicado(String id) {
-            super(Response.status(Response.Status.CONFLICT)
-                    .entity("El recurso con ID " + id + " ya existe").type(MediaType.TEXT_PLAIN).build());
+
+    @DELETE
+    @Secured
+    @Path("/{id}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response deleteSala(@PathParam("id") String username) {
+        Query query = EMF.getEntityManager().createNamedQuery(Usuario.BUSCAR_USUARIO);
+        query.setParameter("usuario", username);
+
+        try {
+            Usuario s = (Usuario) query.getSingleResult();
+            if (EMF.delete(s)) return Response.status(200).build();
         }
+        catch (Exception e) {
+            throw new RecursoNoExiste(username);
+        }
+
+        throw new RecursoNoExiste(username);
     }
 
-    public class RecursoNoExiste extends WebApplicationException {
-        public RecursoNoExiste(int id) {
-            super(Response.status(Response.Status.NOT_FOUND)
-                    .entity("El recurso con id " + id + " no fue encontrado").type(MediaType.TEXT_PLAIN).build());
-        }
-    }
+
+
+
 }
