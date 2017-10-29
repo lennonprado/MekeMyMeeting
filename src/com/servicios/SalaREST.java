@@ -1,8 +1,8 @@
 package com.servicios;
 
 import com.autenticacion.Secured;
-import com.clases.Sala;
-import com.clases.Usuario;
+import com.entidades.Sala;
+import com.entidades.Usuario;
 
 import javax.persistence.Query;
 import javax.ws.rs.*;

@@ -1,9 +1,7 @@
-package com.clases;
+package com.entidades;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.*;
 
 import javax.persistence.*;

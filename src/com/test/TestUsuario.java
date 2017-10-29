@@ -1,9 +1,9 @@
 package com.test;
 
-import com.clases.Calendario;
-import com.clases.Reunion;
-import com.clases.Sala;
-import com.clases.Usuario;
+import com.entidades.Calendario;
+import com.entidades.Reunion;
+import com.entidades.Sala;
+import com.entidades.Usuario;
 import org.junit.Before;
 import org.junit.Test;
 

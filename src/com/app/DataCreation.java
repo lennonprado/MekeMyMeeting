@@ -6,7 +6,7 @@ import java.util.GregorianCalendar;
 
 import javax.persistence.EntityManager;
 
-import com.clases.*;
+import com.entidades.*;
 import com.servicios.EMF;
 
 public class DataCreation {

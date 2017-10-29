@@ -2,8 +2,7 @@ package com.servicios;
 
 import com.autenticacion.Credencial;
 import com.autenticacion.TokenHelper;
-import com.clases.Usuario;
-import com.servicios.EMF;
+import com.entidades.Usuario;
 
 import javax.ws.rs.Consumes;
 import javax.ws.rs.POST;
