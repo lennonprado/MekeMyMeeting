@@ -41,7 +41,7 @@ public class UsuarioREST {
         Usuario u = createUser(umap);
         boolean usuarioValido = EMF.persist(u);
         if (usuarioValido) return Response.status(201).entity(u).build();
-        else throw new RecursoDuplicado(u.getNombre());
+        else throw new RecursoDuplicado(u.getNombreUsuario());
     }
 
     @PUT
@@ -90,7 +90,7 @@ public class UsuarioREST {
     @Secured
     @Path("/{id}")
     @Produces(MediaType.APPLICATION_JSON)
-    public Response deleteSala(@PathParam("id") String username) {
+    public Response deleteUsuario(@PathParam("id") String username) {
         Query query = EMF.getEntityManager().createNamedQuery(Usuario.BUSCAR_USUARIO);
         query.setParameter("usuario", username);
 

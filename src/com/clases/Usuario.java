@@ -36,10 +36,10 @@ public class Usuario {
     private String nombre;
     private String apellido;
 
-    @OneToMany(mappedBy = "usuarioNotificado", cascade = CascadeType.PERSIST)
+    @OneToMany(mappedBy = "usuarioNotificado", cascade = CascadeType.ALL)
     private List<Notificacion> notificaciones;
 
-    @OneToMany(mappedBy = "usuario", cascade = CascadeType.PERSIST)
+    @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL)
     private List<Calendario> calendarios;
 
     private String password;
@@ -48,14 +48,13 @@ public class Usuario {
         notificaciones = new ArrayList<>();
         calendarios = new ArrayList<>();
         crearCalendario(); // Se crea un calendario por default
+        this.password = "";
+        this.nombreUsuario = "";
     }
 
     public Usuario(String nombre) {
+        this();
         this.nombreUsuario = nombre;
-        notificaciones = new ArrayList<>();
-        calendarios = new ArrayList<>();
-        crearCalendario(); // Se crea un calendario por default
-        password = "";
     }
 
     public String getNombreUsuario() {

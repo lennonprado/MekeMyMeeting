@@ -37,6 +37,7 @@ public class EMF implements ServletContextListener{
             manager.getTransaction().commit();
         }
         catch (Exception e){
+            manager.getTransaction().rollback();
             return false;
         }
         return true;
@@ -49,6 +50,7 @@ public class EMF implements ServletContextListener{
             manager.getTransaction().commit();
         }
         catch (Exception e){
+            manager.getTransaction().rollback();
             return false;
         }
         return true;
