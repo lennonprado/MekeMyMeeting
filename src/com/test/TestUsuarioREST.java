@@ -21,28 +21,35 @@ public class TestUsuarioREST {
     HttpClient client = HttpClientBuilder.create().build();
     String token;
 
-    @Before
-    public void setUp() throws Exception {
+    public static String createUserJson(){
         ObjectMapper mapper = new ObjectMapper();
-
-        ObjectNode auth = mapper.createObjectNode();
-        auth.put("username", "julio34");
-        auth.put("password", "12354qR");
-        String authString = auth.toString();
-
         ObjectNode user = mapper.createObjectNode();
         user.put("nombreUsuario", "julio34");
         user.put("nombre", "Julio");
         user.put("apellido", "Oso");
         user.put("password", "12354qR");
-        String userString = user.toString();
+        return user.toString();
+    }
+
+    public static String createUserCredentialsJson(){
+        ObjectMapper mapper = new ObjectMapper();
+        ObjectNode auth = mapper.createObjectNode();
+        auth.put("username", "julio34");
+        auth.put("password", "12354qR");
+        return auth.toString();
+    }
+
+    @Before
+    public void setUp() throws Exception {
+
+        String authString = createUserCredentialsJson();
+        String userString = createUserJson();
 
         String url = BASE_URL + "usuarios";
 
         HttpPost post = new HttpPost(url);
         post.setEntity(new StringEntity(userString, ContentType.APPLICATION_JSON));
         client.execute(post);
-
 
         post = new HttpPost(BASE_URL + "autenticacion");
         post.setEntity(new StringEntity(authString, ContentType.APPLICATION_JSON));

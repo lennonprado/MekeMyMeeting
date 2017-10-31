@@ -3,6 +3,7 @@ package com.servicios;
 import com.autenticacion.Secured;
 import com.entidades.Usuario;
 
+import javax.persistence.NoResultException;
 import javax.persistence.Query;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
@@ -25,14 +26,6 @@ public class UsuarioREST {
         return u;
     }
 
-    /*
-    {
-	"nombreUsuario":"julio12",
-	"nombre": "Julio",
-	"apellido": "Sas",
-	"password": "213"
-    }
-     */
 
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
@@ -79,10 +72,15 @@ public class UsuarioREST {
     @GET
     @Path("/{id}")
     @Produces(MediaType.APPLICATION_JSON)
-    public Usuario getUsuario(@PathParam("id") String u) {// TODO controlar usuario inexistente
+    public Usuario getUsuario(@PathParam("id") String u) {
         Query query = EMF.getEntityManager().createNamedQuery(Usuario.BUSCAR_USUARIO);
         query.setParameter("usuario", u);
-        return (Usuario)query.getSingleResult();
+        try {
+            return (Usuario)query.getSingleResult();
+        }
+        catch (NoResultException e){
+            throw new RecursoNoExiste(u);
+        }
     }
 
 

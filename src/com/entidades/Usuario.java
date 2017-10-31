@@ -48,13 +48,14 @@ public class Usuario {
         notificaciones = new ArrayList<>();
         calendarios = new ArrayList<>();
         crearCalendario(); // Se crea un calendario por default
-        this.password = "";
-        this.nombreUsuario = "";
     }
 
-    public Usuario(String nombre) {
+    public Usuario(String nombreUsuario, String nombre, String apellido, String password) {
         this();
-        this.nombreUsuario = nombre;
+        this.nombreUsuario = nombreUsuario;
+        this.nombre = nombre;
+        this.apellido = apellido;
+        this.password = password;
     }
 
     public String getNombreUsuario() {

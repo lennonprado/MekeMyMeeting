@@ -19,17 +19,17 @@ public class DataCreation {
 
         manager.getTransaction().begin();
 
-        Usuario u1 = new Usuario("Pablito");
-        Usuario u2 = new Usuario("Roberto");
-        Usuario u3 = new Usuario("Julio");
-        Usuario u4 = new Usuario("Ezequiel");
-        Usuario u5 = new Usuario("Mariano");
-        Usuario u6 = new Usuario("Marcos");
-        Usuario u7 = new Usuario("Pedro");
-        Usuario u8 = new Usuario("Lucia");
-        Usuario u9 = new Usuario("Gustavo");
-        Usuario u10 = new Usuario("Liliana");
-        Usuario u11 = new Usuario("Santiago");
+        Usuario u1 = new Usuario("pablito35","Pablito", "Ruiz", "let54x");
+        Usuario u2 = new Usuario("robert7", "Roberto", "", "464v");
+        Usuario u3 = new Usuario("juli76", "Julio", "", "myPass");
+        Usuario u4 = new Usuario("eze76765", "Ezequiel", "", "eeezee");
+        Usuario u5 = new Usuario("marian1", "Mariano", "", "tpma");
+        Usuario u6 = new Usuario("marqqi", "Marcos", "", "marc445");
+        Usuario u7 = new Usuario("pedro88", "Pedro", "", "p3d886");
+        Usuario u8 = new Usuario("luci11", "Lucia", "", "l86df");
+        Usuario u9 = new Usuario("gust64", "Gustavo", "", "yrlcR");
+        Usuario u10 = new Usuario("lili95", "Liliana", "", "loteX");
+        Usuario u11 = new Usuario("santi", "Santiago", "", "syrr");
 
 
         Sala sala1 = new Sala(5, "Sala 1", "Direccion 1");

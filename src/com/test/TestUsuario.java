@@ -21,7 +21,7 @@ public class TestUsuario {
 
     @Before
     public void setUp() throws Exception {
-        this.user = new Usuario("Juan");
+        this.user = new Usuario("juan8", "Juan", "", "57tf");
         this.sala = new Sala(10,"La sala","Avellaneda 10");
         Date fechaR4 = new GregorianCalendar(2017, Calendar.SEPTEMBER, 22, 15, 0).getTime();
         this.reunion = new Reunion(fechaR4,4,this.sala,this.user);

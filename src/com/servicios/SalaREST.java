@@ -20,14 +20,6 @@ public class SalaREST {
         return query.getResultList();
     }
 
-
-    /*
-        {
-	    "cantPersonas": 56,
-	    "nombre": "Sala 4",
-	    "direccion": "Direccion 4"
-        }
-     */
     @POST
     @Secured
     @Consumes(MediaType.APPLICATION_JSON)

@@ -29,6 +29,7 @@ public class Sala {
     private List<Reunion> reuniones; // Reuniones que se realizaran en esta sala
 
     public Sala() {
+        this.reuniones = new ArrayList<>();
     }
 
     public Sala(int cantPersonas, String nombre, String direccion) {

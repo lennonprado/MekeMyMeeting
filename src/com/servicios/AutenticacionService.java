@@ -44,7 +44,7 @@ public class AutenticacionService {
             return false;
         }
 
-        return resultado.equals(user);
+        return resultado != null && resultado.equals(user);
 
     }
 
