@@ -88,18 +88,23 @@ public class TestReunionREST {
 
     @Test
     public void crearReunion() throws Exception {
+        String requestURL = BASE_URL + "reuniones";
+        System.out.println("\nPOST " + requestURL);
         HttpResponse r = generarReunion();
         int responseCode = r.getStatusLine().getStatusCode();
-
+        System.out.println("Response Code : " + responseCode);
         assertEquals(201, responseCode);
     }
 
     @Test
     public void getReuniones() throws Exception {
-        HttpGet request = new HttpGet(BASE_URL + "reuniones");
+        String requestURL = BASE_URL + "reuniones";
+        System.out.println("\nGET " + requestURL);
+
+        HttpGet request = new HttpGet(requestURL);
         request.addHeader("Authorization", "Bearer:" + token);
         int responseCode = client.execute(request).getStatusLine().getStatusCode();
-
+        System.out.println("Response Code : " + responseCode);
         assertEquals(200, responseCode);
 
     }
